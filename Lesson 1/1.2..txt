@@ -1,0 +1,43 @@
+class Dvarf {
+    String name;
+    int strength;
+    int luck;
+    int health;
+    String craftSkill;
+    String combatSkill; 
+    String status;
+}
+
+class Weapon{
+    String name;
+    String attackType;
+    boolean ammunition; // Является ли боеприпасом, например, стрелы и болты
+    String itemMaterial; // Из чего сделан, например, серебра, меди, бронзы
+    String itemType; // Топор, булава, меч и т.д.
+}
+
+class Animal {
+    String name;
+    String type;
+    double size;
+    int age;
+    String gender;
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Dvarf dvarf = new Dvarf();
+        dvarf.name = "Gloin";
+        dvarf.luck = 3;
+        dvarf.strength  = 7;
+        dvarf.health = 40;
+        dvarf.status = "immigration";
+
+        Animal pet = new Animal();
+        pet.name = "Hex";
+        pet.type = "sheep";
+        pet.age = 2;
+        System.out.println(pet.age);
+     
+    }
+}    
