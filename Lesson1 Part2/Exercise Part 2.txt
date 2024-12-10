@@ -1,0 +1,90 @@
+class Dvarf {
+    String name;
+    int strength;
+    int luck;
+    int health;
+    String craftSkill;
+    String combatSkill; 
+    String status;
+
+    Dvarf(String name, int health, int strength, String status){
+        this.name = name;
+        this.health = health;
+        this.strength = strength;
+        this.status = status;
+    }
+ 
+    void Life(int new_health) {
+        if (new_health > 0)
+            this.health = new_health;
+        else {
+            this.health = new_health;
+            this.status = "died";
+        }   
+    }
+    // Тяжелая работа.
+    void hardWork() {
+        this.strength = strength - 1;
+        this.health = health - 5;
+    }    
+}
+
+
+class Weapon{
+    String name;
+    boolean ammunition; // Является ли боеприпасом, например, стрелы и болты
+    int itemMaterial; // Из чего сделан, например, серебра, меди, бронзы
+    int resourse; // ресурс
+    int damage;
+
+    Weapon(String name, int material, int resourse, int damage) {
+        this.name = name;
+        this.ammunition = ammunition;
+        this.itemMaterial = material;
+        this.resourse = resourse;
+        this.damage = damage;
+    }
+
+    void Sharpening() {
+        this.damage = damage + 5;
+        this.resourse = resourse - 10;
+    }
+}
+
+
+class Animal {
+    String name;
+    String type;
+    double size;
+    double speed;
+
+    Animal( String name, String type, double size, double speed) {
+        this.name = name;
+        this.type = type;
+        this.size = size;
+        this.speed = speed;
+    } 
+
+    void Eat() {
+        this.size = size + 0.2;
+        this.speed = speed - (0.3 * speed);
+    } 
+    
+    void Run(double n_speed) {
+        this.speed = n_speed;
+        this.size = size - 0.2;
+    }    
+}
+
+
+public class Main {
+    public static void main(String[] args) {
+        Dvarf dvarf = new Dvarf("Gloin", 40, 7, "immigration" );
+        Animal pet = new Animal("Hex", "sheep", 2, 2.5);
+
+        dvarf.Life(0);
+        pet.Run(5);
+        
+        System.out.println("Статус дварфа: " + dvarf.status + " , а вес животного: " + pet.size);
+    }
+}    
