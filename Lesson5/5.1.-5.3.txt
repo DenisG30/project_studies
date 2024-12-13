@@ -1,0 +1,211 @@
+class Dvarf {
+    private String name;
+    private int strength;
+    private int health;
+    private String status;
+
+    Dvarf(String name, int health, int strength, String status){
+        this.name = name;
+        this.health = health;
+        this.strength = strength;
+        this.status = status;
+    }
+
+    // Статус погибшего
+    public void Life(int new_health) {
+        if (new_health > 0)
+            this.health = new_health;
+        else {
+            this.health = new_health;
+            this.status = "died";
+        }   
+    }
+    // Тяжелая работа.
+    public void hardWork() {
+        String message;
+        if (strength > 1 && health > 5) {
+            this.strength = strength - 1;
+            this.health = health - 5;
+            message = "Тяжёлая работа выполняется!";
+        } else
+            message = "Выполнить тяжёлую работу невозможно!";
+    }
+
+    // Работаем с именем
+    public void setName(String name) {
+       this.name = name;
+   }
+    public String getName() {
+       return name;
+   }
+    
+    //Работаем с здоровьем  
+    public void setHealth(int health) {
+       this.health = health;
+   }
+    public int getHealth() {
+       return health;
+   }
+    
+    //Работаем с силой  
+    public void setStrength(int strength) {
+       this.strength = strength;
+   }
+    public int getStrength() {
+       return strength;
+   }
+    
+    //Работаем с статусом  
+    public void setStatus(String status) {
+       this.status = status;
+   }
+    public String getStatus() {
+       return status;
+   }
+}
+
+
+class Weapon{
+    private String name;
+    private int resourse; // ресурс
+    private int damage;
+
+    Weapon(String name, int material, int resourse, int damage) {
+        this.name = name;
+        this.resourse = resourse;
+        this.damage = damage;
+    }
+
+    public void Sharpening() {
+        this.damage = damage + 5;
+        this.resourse = resourse - 10;
+    }
+    
+    //Работаем с наименованием 
+    public void setName(String name) {
+       this.name = name;
+   }
+    public String getName() {
+       return name;
+   }
+
+    //Работаем с ресурсом  
+    public void setResourse(int resourse) {
+       this.resourse = resourse;
+   }
+    public int getResourse() {
+       return resourse;
+   }
+
+    //Работаем с уроном  
+    public void setDamage(int damage) {
+       this.damage = damage;
+   }
+    public int getDamage() {
+       return damage;
+   }
+}
+
+
+class Animal {
+    protected String name;
+    protected String type;
+    protected double size;
+    protected double speed;
+
+    Animal (String name, String type, double size, double speed) {
+        this.name = name;
+        this.type = type;
+        this.size = size;
+        this.speed = speed;
+    } 
+
+    public void Eat() {
+        this.size = size + 0.2;
+        this.speed = speed - (0.3 * speed);
+    } 
+    
+    public void Run(double n_speed) {
+        this.speed = n_speed;
+        this.size = size - 0.2;
+    }
+
+    //Работаем с именем  
+    public void setName(String name) {
+       this.name = name;
+   }
+    public String getName() {
+       return name;
+   }
+    
+    //Работаем с типом  
+    public void setType(String type) {
+       this.type = type;
+   }
+    public String getType() {
+       return type;
+    }
+    
+    //Работаем с размером  
+    public void setSize(double size) {
+       this.size = size;
+   }
+    public double getSize() {
+       return size;
+    } 
+
+    //Работаем с скоростью   
+    public void setSpeed(double speed) {
+       this.speed = speed;
+   }
+    public double getSpeed() {
+       return speed;
+    } 
+}
+
+class Sheep extends Animal {
+    protected double lengthOfWool;
+    protected double voiceVolume; 
+
+    Sheep(String name, String type, double size, double speed, double l_wool, double v_volume) {
+        super (name, type, size, speed);
+        this.lengthOfWool = l_wool;
+        this. voiceVolume = v_volume;
+    }
+
+    //Работаем с длиной шерсти   
+    public void setLengthOfWool (double lengthOfWool) {
+       this.lengthOfWool = lengthOfWool;
+   }
+    public double getLengthOfWool() {
+       return lengthOfWool;
+    }
+
+    //Работаем с громкостью голоса   
+    public void setVoiceVolume (double voiceVolume) {
+       this.voiceVolume = voiceVolume;
+   }
+    public double getVoiceVolume() {
+       return voiceVolume;
+    } 
+
+    public void shearingWool(double howMuchCut) {
+        if (howMuchCut <= lengthOfWool)
+            this.lengthOfWool = lengthOfWool - howMuchCut;
+    }
+}
+
+
+public class Main {
+    public static void main(String[] args) {
+        Dvarf dvarf = new Dvarf("Gloin", 40, 7, "immigration" );
+        Sheep pet = new Sheep("Hex", "sheep", 2, 2.5, 3, 10);
+
+        dvarf.setName("Gimly");
+        pet.setName("Dolly");
+        pet.setVoiceVolume(8);
+        pet.shearingWool(2);
+
+        System.out.println(dvarf.getName() + " " + pet.getName() + " " + pet.getLengthOfWool());
+    }
+}    
