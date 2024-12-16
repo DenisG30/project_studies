@@ -1,0 +1,50 @@
+Две иерархии классов:
+Строки 110 и 166.
+
+class Animal {
+    protected String name;
+    protected String type;
+    protected double size;
+    protected double speed;
+
+    Animal (String name, String type, double size, double speed) {
+        this.name = name;
+        this.type = type;
+        this.size = size;
+        this.speed = speed;
+    } 
+}
+
+	class Sheep extends Animal {
+    		protected double lengthOfWool;
+    		protected double voiceVolume; 
+
+    		Sheep(String name, String type, double size, double speed, double l_wool, double v_volume) {
+        		super (name, type, size, speed);
+        		this.lengthOfWool = l_wool;
+        		this. voiceVolume = v_volume;
+    		}
+
+    		//Работаем с длиной шерсти   
+    		public void setLengthOfWool (double lengthOfWool) {
+       			this.lengthOfWool = lengthOfWool;
+   		}
+    		public double getLengthOfWool() {
+       			return lengthOfWool;
+    		}
+
+    		//Работаем с громкостью голоса   
+    		public void setVoiceVolume (double voiceVolume) {
+       			this.voiceVolume = voiceVolume;
+   		}
+    		public double getVoiceVolume() {
+       			return voiceVolume;
+    		} 
+
+    		public void shearingWool(double howMuchCut) {
+        		if (howMuchCut <= lengthOfWool)
+            			this.lengthOfWool = lengthOfWool - howMuchCut;
+    		}
+	}
+
+	

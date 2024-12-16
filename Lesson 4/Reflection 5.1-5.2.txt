@@ -1,0 +1,38 @@
+5.1.
+Каждое свойство каждого класса я определил как скрытое поле (private), а каждый метод каждого класса определил публичным (public).
+Допущена ошибка, конструктор класса каждого класса я не определил публичным (public).
+
+
+5.2.
+Работаем с методами:
+
+Строка 23:
+ // Тяжелая работа.
+    public void hardWork() {
+        String message;
+        if (strength > 1 && health > 5) {
+            this.strength = strength - 1;
+            this.health = health - 5;
+            message = "Тяжёлая работа выполняется!";
+        } else
+            message = "Выполнить тяжёлую работу невозможно!";
+    }
+
+
+Строка 192:
+ public void shearingWool(double howMuchCut) {
+        if (howMuchCut <= lengthOfWool)
+            this.lengthOfWool = lengthOfWool - howMuchCut;
+    }
+
+Используем данные для создания и взаимодействия с объектами класса:
+Строка 201:
+ 	Dvarf dvarf = new Dvarf("Gloin", 40, 7, "immigration" );
+        Sheep pet = new Sheep("Hex", "sheep", 2, 2.5, 3, 10);
+
+        dvarf.setName("Gimly");
+        pet.setName("Dolly");
+        pet.setVoiceVolume(8);
+        pet.shearingWool(2);
+
+        System.out.println(dvarf.getName() + " " + pet.getName() + " " + pet.getLengthOfWool());

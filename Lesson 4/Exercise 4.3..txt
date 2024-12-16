@@ -1,0 +1,17 @@
+class Unit {
+    public int plus (int x, int y) {
+        return x + y;
+    }
+    public String plus (String a, String b) {
+        return a + b;
+    }
+}
+
+public class MyClass {
+  public static void main(String args[]) {
+      Unit unit = new Unit();
+
+      System.out.println(unit.plus(2,3));
+      System.out.println(unit.plus("hello ", "world"));
+  }
+}

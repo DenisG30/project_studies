@@ -1,0 +1,91 @@
+/*
+Изменил код под данное задание. В предыдущем коде было неудобно выполнять задание, проще переписать код.
+*/
+
+class Unit {
+    private View view;
+    private Item item;
+    private Characteristics characteristics;
+    
+    public Unit (View view, Item item, Characteristics characteristics) {
+        this.view = view;
+        this.item = item;
+        this.characteristics = characteristics;    
+    }
+
+    public String printState() {
+        return "Имя юнита " + view.getName() +  ", а количество здоровья у него равно " + characteristics.getHealth() + " единицам";
+    }
+}
+
+
+class View {
+    private String name;
+    private int age;
+    private int race;
+    
+    public View (String name,  int age, int race) {
+        this.name = name;
+        this.age = age;
+        this.race = race; // 1 - dvarf, 2 - elf, 3 - human
+    }
+
+    public String getName() {
+        return name;
+    }
+}
+
+class Item { // Предмет в инвентаре
+    private String name;
+    public Item (String name) {
+        this.name = name;
+    }
+}
+
+class Characteristics {
+    private int health;
+    private double strength;
+    private double speed;
+    private int totalDamage;
+    private int totalArmor;
+    
+    public Characteristics (int health, double strength, double speed, int totalDamage, int totalArmor) {
+    this.health = health;
+    this.strength = strength;
+    this.speed = speed;
+    this.totalDamage = totalDamage;
+    this.totalArmor = totalArmor;
+    }
+
+   /* public void ActiveEffects(race) {
+        if (race == 1) {
+            this.speed = speed * 0.8;
+            this.strength = strength * 1.4;
+        }
+        else if ( race == 2) {
+            this.speed = speed * 1.5;
+            this.strength = strength * 0.7;
+        }
+        else {
+            this.speed = speed * 1.1;
+            this.strength = strength * 1.1;
+        }
+    }*/
+
+    public int getHealth() {
+        return health;
+    }
+}
+
+
+
+public class MyClass {
+  public static void main(String args[]) {
+    View view = new View ("Tranduil", 200, 2);
+        Item item = new Item ("Лук");
+        Characteristics character = new Characteristics (40, 10, 5, 8, 30);
+
+        Unit unit = new Unit(view, item, character);
+        System.out.println(unit.printState());
+  }
+}

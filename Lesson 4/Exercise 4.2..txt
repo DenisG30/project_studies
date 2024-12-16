@@ -1,0 +1,69 @@
+class Unit {
+   public String foo() {
+       return "foo() из родительского класса Unit";
+   }
+}
+
+class Dvarf extends Unit {
+    public String foo() {
+        return "foo() из класса Dvarf";
+    }
+}
+
+class Elf extends Unit {
+    public String foo() {
+        return "foo() из класса Elf";
+    }
+}
+
+
+public class MyClass {
+  public static void main(String args[]) {
+        Unit unit = new Unit(); 
+        Dvarf dvarf = new Dvarf(); // Но можно записать и иначе: Unit dvarf = new Dvarf(), т.к. объект Dvarf является и объектом Unit в следствии наследования.
+        Elf elf = new Elf();  // Но можно записать и иначе: Unit elf = new Elf() т.к. объект Elf является и объектом Unit в следствии наследования.
+        
+        System.out.println(unit.foo());
+        System.out.println(dvarf.foo());
+        System.out.println(elf.foo());
+  }
+}
+
+-------------------------------------------------------------------------------
+
+import java.util.Random;
+
+class Unit {
+   public String foo() {
+       return "foo() из родительского класса Unit";
+   }
+}
+
+class Dvarf extends Unit {
+    public String foo() {
+        return "foo() из класса Dvarf";
+    }
+}
+
+class Elf extends Unit {
+    public String foo() {
+        return "foo() из класса Elf";
+    }
+}
+
+
+public class MyClass {
+  public static void main(String args[]) {
+        Random random = new Random();
+        Unit[] unit = new Unit[3];
+        
+        for (int i = 0; i < unit.length; i++) 
+            if(random.nextBoolean())
+                unit[i] = new Dvarf();
+            else 
+                unit[i] = new Elf();
+        
+        for (int i = 0; i < unit.length; i++)
+            unit[i].foo();
+  }
+}
