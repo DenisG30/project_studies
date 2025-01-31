@@ -1,0 +1,3 @@
+В целом решение из ответа к заданию понятно, но для чего в начале кода выполняем эти действия:
+File tmpZip = File.createTempFile(source.getName(), null);
+tmpZip.delete(); 
