@@ -4,10 +4,18 @@ import static org.junit.Assert.*;
 public class ArraySortPastExerciseCourseTest {        
     @Test
     public void testSortArray() {
-        int[] a2 = {1, 2, 3, 4, 5};
-        int[] a3 = {2, 5, 1, 3, 4};
-        
-        assertArrayEquals(a2, ArraySortPastExerciseCourse.Sort(a3));
+        Random random = new Random();
+        for(int i = 0; i < 100; i++) {
+            int n = 10; 
+            int [] a2 = new int[n];
+            int [] a3 = new int[n];
+            for(int j = 0; j < n; j++) {
+                a2[j] = random.nextInt(10) + 1;
+                a3[j] = a2[j];
+            }
+            Arrays.sort(a2);
+            assertArrayEquals(a2, ArraySortPastExerciseCourse.Sort(a3));
+        } 
     }
 
     @Test
