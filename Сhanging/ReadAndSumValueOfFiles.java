@@ -7,20 +7,26 @@ public class ReadAndSumValueOfFiles {
     static final int ER_READ_F = 2;
     static final int ER_CLOSE_F = 3;
 
-    public static int SumValue(String num1, String num2) {
-        int sum1 = 0;
-        int res1 = readAndSum(num1, sum1);
-        if (res1 == ER_WRONG || res1 == ER_READ_F || res1 == ER_CLOSE_F) {
-            return res1;
+    public static int SumValue(String[] num) {
+        int sum = 0;
+        for(int i = 0; i < num.length; i++) {
+            String num1 = num[i];
+            int sum1 = 0;
+            int res1 = readAndSum(num1, sum1);
+            if (res1 == ER_WRONG || res1 == ER_READ_F || res1 == ER_CLOSE_F) {
+                return res1;
+            }
+            sum += res1;
         }
-
+        /* 
         int sum2 = 0;
         int res2 = readAndSum(num2, sum2);
         if (res2 == ER_WRONG || res2 == ER_READ_F || res2 == ER_CLOSE_F) {
             return res2;
         }
-        
-        int sum = res1 + res2;
+        */
+
+        //int sum = res1 + res2;
         return sum;
     }
     
@@ -52,10 +58,13 @@ public class ReadAndSumValueOfFiles {
     }
     
     public static void main(String[] args) {
-        Random rand = new Random();
-        String fileWay1 = (rand.nextInt(9) + 1) + ".txt";
-        String fileWay2 = (rand.nextInt(9) + 1) + ".txt";
-        int res = SumValue(fileWay1, fileWay2);
+        //Random rand = new Random();
+
+        String[] fileWay1 = {"1.txt", "2.txt", "3.txt", "4.txt"};
+        //String fileWay1 = (rand.nextInt(9) + 1) + ".txt";
+        //String fileWay2 = (rand.nextInt(9) + 1) + ".txt";
+
+        int res = SumValue(fileWay1);
 
         switch (res) {
             case ER_WRONG:
