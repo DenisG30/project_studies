@@ -9,19 +9,23 @@ public class ReadAndSumValueOfFiles {
     static final int ER_CLOSE_F = 3;
 
     public static int[] SumValue(String[] num) {
-        int[] res = new int[2]; // код ошибки и общая сумма
-        res[0] = 0;
-        res[1] = 0;
-        
+        HashMap<Integer, Integer> errAndSum = new HashMap<Integer, Integer>();
+        int keys = 0;
+        int values = 0;
+                
         for (int i = 0; i < num.length; i++) {
             int[] arr = readAndSum(num[i]);
+        
             if (arr[0] != 0) {
-                res[0] = arr[0];
-                return res;
+                keys = arr[0];
+                errAndSum.put(keys, values);
+                return errAndSum;
             }    
-            res[1] += arr[1];
+         
+            values += arr[1];
+            errAndSum.put(keys, values);
         }
-        return res;
+        return errAndSum;
     }
     
     private static int[] readAndSum(String num) {
@@ -60,23 +64,7 @@ public class ReadAndSumValueOfFiles {
     
     public static void main(String[] args) {
         String[] fileWay1 = {"1.txt", "2.txt", "3.txt", "4.txt"};
-    
-        int[] res = new int[2];
+        HashMap<Integer, Integer> res = new HashMap<Integer, Integer>();
         res = SumValue(fileWay1);
-
-        switch (res[0]) {
-            case OK:
-                    System.out.println("Сложение завершено! Сумма значений равна " + res[1]);   
-                break;
-            case ER_WRONG:
-                    System.out.println("Ошибка! В одном из файлов присутствует недопустимое число.");   
-                break;
-            case ER_READ_F:
-                System.out.println("Ошибка при чтении файла.");
-                break;
-            case ER_CLOSE_F:
-                System.out.println("Ошибка при закрытии файла.");
-                break;
-        }
     }
 }
