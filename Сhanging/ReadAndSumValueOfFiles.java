@@ -8,7 +8,7 @@ public class ReadAndSumValueOfFiles {
     static final int ER_READ_F = 2;
     static final int ER_CLOSE_F = 3;
 
-    public static int[] SumValue(String[] num) {
+    public static HashMap<Integer, Integer> SumValue(String[] num) {
         HashMap<Integer, Integer> errAndSum = new HashMap<Integer, Integer>();
         int keys = 0;
         int values = 0;
