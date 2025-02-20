@@ -8,24 +8,24 @@ public class ReadAndSumValueOfFiles {
     static final int ER_READ_F = 2;
     static final int ER_CLOSE_F = 3;
 
-    public static HashMap<Integer, Integer> SumValue(String[] num) {
-        HashMap<Integer, Integer> errAndSum = new HashMap<Integer, Integer>();
-        int keys = 0;
-        int values = 0;
-                
+    public static HashMap<String, Integer> SumValue(String[] num) {
+        int sum = 0;
+        HashMap<String, Integer> valueAndError = new HashMap<String, Integer>();
+        valueAndError.put("error", 0);
+        valueAndError.put("value", 0);
+        
         for (int i = 0; i < num.length; i++) {
             int[] arr = readAndSum(num[i]);
-        
             if (arr[0] != 0) {
-                keys = arr[0];
-                errAndSum.put(keys, values);
-                return errAndSum;
+                valueAndError.remove("error");
+                valueAndError.put("error", arr[0]);
+                return valueAndError;
             }    
-         
-            values += arr[1];
-            errAndSum.put(keys, values);
+            sum += arr[1];
         }
-        return errAndSum;
+        valueAndError.remove("value");
+        valueAndError.put("value", sum);
+        return valueAndError;
     }
     
     private static int[] readAndSum(String num) {
@@ -64,7 +64,22 @@ public class ReadAndSumValueOfFiles {
     
     public static void main(String[] args) {
         String[] fileWay1 = {"1.txt", "2.txt", "3.txt", "4.txt"};
-        HashMap<Integer, Integer> res = new HashMap<Integer, Integer>();
+        HashMap<String, Integer> res = new HashMap<String, Integer>();
         res = SumValue(fileWay1);
+
+        switch (res.get("error")) {
+            case OK:
+                    System.out.println("Сложение завершено! Сумма значений равна " + res.get("value"));   
+                break;
+            case ER_WRONG:
+                    System.out.println("Ошибка! В одном из файлов присутствует недопустимое число.");   
+                break;
+            case ER_READ_F:
+                System.out.println("Ошибка при чтении файла.");
+                break;
+            case ER_CLOSE_F:
+                System.out.println("Ошибка при закрытии файла.");
+                break;
+        }
     }
 }
