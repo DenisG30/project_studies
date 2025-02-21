@@ -7,24 +7,26 @@ public class ReadAndSumValueOfFiles {
     static final int ER_WRONG = 1;
     static final int ER_READ_F = 2;
     static final int ER_CLOSE_F = 3;
+    static final String ERROR = "error";
+    static final String VALUE = "value";
 
     public static HashMap<String, Integer> SumValue(String[] num) {
         int sum = 0;
         HashMap<String, Integer> valueAndError = new HashMap<String, Integer>();
-        valueAndError.put("error", 0);
-        valueAndError.put("value", 0);
+        valueAndError.put(ERROR, 0);
+        valueAndError.put(VALUE, 0);
         
         for (int i = 0; i < num.length; i++) {
             int[] arr = readAndSum(num[i]);
             if (arr[0] != 0) {
-                valueAndError.remove("error");
-                valueAndError.put("error", arr[0]);
+                valueAndError.remove(ERROR);
+                valueAndError.put(ERROR, arr[0]);
                 return valueAndError;
             }    
             sum += arr[1];
         }
-        valueAndError.remove("value");
-        valueAndError.put("value", sum);
+        valueAndError.remove(VALUE);
+        valueAndError.put(VALUE, sum);
         return valueAndError;
     }
     
@@ -67,9 +69,9 @@ public class ReadAndSumValueOfFiles {
         HashMap<String, Integer> res = new HashMap<String, Integer>();
         res = SumValue(fileWay1);
 
-        switch (res.get("error")) {
+        switch (res.get(ERROR)) {
             case OK:
-                    System.out.println("Сложение завершено! Сумма значений равна " + res.get("value"));   
+                    System.out.println("Сложение завершено! Сумма значений равна " + res.get(VALUE));   
                 break;
             case ER_WRONG:
                     System.out.println("Ошибка! В одном из файлов присутствует недопустимое число.");   
