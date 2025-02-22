@@ -82,8 +82,6 @@ public class MakeImg {
                         files[i].delete();
                         //System.out.println("создание успешно!");
 
-                } else
-                    continue;
             } catch(Exception e) {
                 nameAndStatus.put(files[i].getName(), ERROR_HANDLE_FILE);
                 //System.out.println("Ошибка при обработке файла: " + files[i].getName());
