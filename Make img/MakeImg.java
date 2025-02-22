@@ -5,13 +5,23 @@ import java.awt.*;
 import java.io.IOException;
 
 public class MakeImg {
-    public static void makeImg(String path, String inputFormat, String outputFormat) {
+    
+    static final int OK = 0; // Успешно
+    static final int ERROR_DIR = 1; // Не нашли директорию
+    static final int ERROR_READ_IMG = 2; // Не удалось прочесть изображение
+    static final int ERROR_HANDLE_FILE = 3; // Не удалось обработать файл (главный catch)
+
+    public static HashMap<String, Integer> makeImg(String path, String inputFormat, String outputFormat) {
+        
+        HashMap<String, Integer> nameAndStatus = new HashMap<String, Integer>();
+        
         File file = new File(path);
         File[] files = file.listFiles();
 
         if (files == null) {
-            System.out.println("Директория не найдена или не является директорией.");
-            return;
+            // System.out.println("Директория не найдена или не является директорией.");
+            nameAndStatus.put(path, ERROR_DIR);
+            return nameAndStatus;
         }
 
         for (int i = 0; i < files.length; i++) {
@@ -20,14 +30,15 @@ public class MakeImg {
                     BufferedImage img = ImageIO.read(files[i]);
                     
                     if (img == null) {
-                     System.out.println("Не удалось прочитать изображение: " + files[i].getName());
-                     continue; // Переходим к следующему файлу
+                        nameAndStatus.put(files[i].getName(), ERROR_READ_IMG);
+                        //System.out.println("Не удалось прочитать изображение: " + files[i].getName());
+                        continue; // Переходим к следующему файлу
                  }
                     
                     String fileName = files[i].getName();
                     String newFileName = path + File.separator + fileName.substring(0, fileName.lastIndexOf('.')) + "." + outputFormat;
                     //String newFileName = (path +  "\\" + fileName.substring(0, fileName.lastIndexOf('.'))) + "." + outputFormat;
-                    System.out.println(newFileName);
+                    //System.out.println(newFileName);
                     
                     
                     Graphics2D g = img.createGraphics();
@@ -67,17 +78,18 @@ public class MakeImg {
                     
                     // записываем итоговое изображение в файл
                         ImageIO.write(img, outputFormat, new File(newFileName));
+                        nameAndStatus.put(files[i].getName(), OK);
                         files[i].delete();
-                        System.out.println("создание успешно!");
+                        //System.out.println("создание успешно!");
 
                 } else
                     continue;
             } catch(Exception e) {
-                System.out.println("Ошибка при обработке файла: " + files[i].getName());
-                e.printStackTrace();
+                nameAndStatus.put(files[i].getName(), ERROR_HANDLE_FILE);
+                //System.out.println("Ошибка при обработке файла: " + files[i].getName());
+                //e.printStackTrace();
             }    
         }
-        
-
+        return nameAndStatus;
     }
 }
