@@ -17,10 +17,10 @@ public class ExerciseTwoMain {
 
         sc.close();
 
-        HashMap<Integer, Integer> repVal = new HashMap<Integer, Integer>();
-        repVal = ExerciseTwo.keyValue(mylist, n);
+         ArrayList<Integer> repVal = ExerciseTwo.keyValue(mylist, n);
+
         if (!repVal.isEmpty()) {
-            System.out.println("Числа, повторяющиеся не менее " + n + " раз: " + repVal.keySet());
+            System.out.println("Числа, повторяющиеся не менее " + n + " раз: " + repVal);
         } else {
             System.out.println("В данном списке не существует чисел повторяющихся не менее " + n + " раз!");
         }
